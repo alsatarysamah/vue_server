@@ -2,13 +2,26 @@ const { getUsers } = require("../services/user");
 const { createNewUser } = require("../services/user");
 const uuid = require("uuid");
 
-const getUsersController =async(req,res)=>{
-    const {limit,offset}=req.body;
-console.log(limit,offset);
-const users = await getUsers(limit,offset);
-res.status(200).send(users)
-}
+const getUsersController = async (req, res) => {
+  try {
+    
+  
+  const { limit, offset, age, dateTo,dateFrom } = req.body;
 
+  const offsetObject = null;
+
+  if (offset && limit) {
+    offsetObject.limit = limit;
+    offsetObject.offset = (offset - 1) * limit;
+  }
+
+
+  const users = await getUsers(age,dateTo,dateFrom ,offsetObject);
+  res.status(200).send(users);
+} catch (error) {
+  console.log(error);  
+}
+};
 
 const createUserController = async (req, res) => {
   try {
@@ -21,4 +34,4 @@ const createUserController = async (req, res) => {
     res.status(400).json({ message: error });
   }
 };
-module.exports={getUsersController,createUserController}
+module.exports = { getUsersController, createUserController };

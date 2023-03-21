@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Tasks extends Model {
+  class TaskUser extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Tasks.init(
+  TaskUser.init(
     {
       seq: {
         type: DataTypes.INTEGER,
@@ -20,9 +20,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       id: { type: DataTypes.STRING, allowNull: false },
-      proirity: { type: DataTypes.JSON, allowNull: false },
-      duty: { type: DataTypes.STRING, allowNull: false },
-      creator: { type: DataTypes.STRING, allowNull: false },
+     
+      taskID: { type: DataTypes.STRING, allowNull: false },
+      users: { type: DataTypes.JSON, allowNull: false },
       recordStatus: {
         type: DataTypes.ENUM,
         values: ["LATEST", "UPDATED", "DELETED"],
@@ -32,12 +32,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Tasks",
+      modelName: "TaskUser",
       initialAutoIncrement: 1000000,
-      tableName: "tasks",
+      tableName: "task_user",
       underscored: true,
       freezeTableName: true,
     }
   );
-  return Tasks;
+  return TaskUser;
 };

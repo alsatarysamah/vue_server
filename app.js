@@ -11,8 +11,13 @@ app.use(express.json());
 app.use(cors());
 
 const userRoute = require("./src/routers/userRoute");
+const taskRoute = require("./src/routers/taskRoute");
+const taskUserRoute = require("./src/routers/taskUserRoute");
+
 
 app.use("/users",userRoute);
+app.use("/task",taskRoute);
+app.use("/taskuser",taskUserRoute)
 
 app.get("/", (req, res) => {
   res.send("hello");
