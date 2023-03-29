@@ -78,7 +78,7 @@ async function getTaskUser(tasks) {
   }
   return res;
 }
-const getTaskByUserId = (userId) => {};
+
 const deleteTaskController = async (req, res) => {
   try {
     const { id } = req.body;
